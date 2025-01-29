@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Afacad:wght@400&family=Advent+Pro:wght@200&display=swap"
+      />
       <body className="relative min-h-screen">
         <Navbar />
         {children}

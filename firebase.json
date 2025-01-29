@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      { "source": "/3d-printing", "destination": "/3d-printing.html" },
+      { "source": "/3d-printing/**", "destination": "/3d-printing.html" }
+    ]
+  }
+}
