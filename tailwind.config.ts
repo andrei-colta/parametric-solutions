@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        afacad: ["Afacad", "sans-serif"],
+        advent: ["Advent Pro", "sans-serif"],
+      },
     },
   },
   plugins: [],
