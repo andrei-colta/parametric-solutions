@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { Theme } from "@/app/shared/theme";
 
 export default function Navbar() {
   return (
-    <nav className="bg-[rgba(154,140,152,0.66)] text-[#F2E9E4] pr-6 flex justify-between items-center shadow-lg h-24">
+    <nav className={`bg-[rgba(154,140,152,0.66)] text-[${Theme.LIGHT}] pr-6 flex justify-between items-center shadow-lg h-24`}>
       {/* Logo */}
       <div className="flex items-center h-full">
         <Link href="/" className="h-full flex items-center space-x-8">

@@ -4,15 +4,12 @@ import PhotoGallery from "@/components/PhotoGallery";
 import { fetchFilesFromFolder, Image } from "@/service/file.service";
 import { useEffect, useState } from "react";
 
-// const PhotoGallery = dynamic(() => import("@/components/PhotoGallery"), { ssr: false });
-
 export default function U3dPrinting() {
   const [images, setImages] = useState<Image[]>([]);
   
   useEffect(() => {
     async function loadImages() {
       const files = await fetchFilesFromFolder(`images/3d-prints`); // Adjust to your Firebase folder
-      console.log("Fetched Images:", files); // ✅ Confirm fetched images in console
       files.sort((a, b) => a.width - b.width)
       setImages(files);
     }
