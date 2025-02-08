@@ -2,8 +2,8 @@
 export enum Theme {
   PRIMARY = '#9A8C98',
   SECONDARY = '#22223B',
-  PRIMARY_LIGHT = '#C9ADA7',
-  SECONDARY_LIGHT = '#4A4E69',
+  PRIMARY_LIGHT = '#c9ADa7',
+  SECONDARY_LIGHT = '#4a4e69',
   LIGHT = '#F2E9E4',
-  WHITE = '#D9D9D9'
+  WHITE = '#d9d9d9'
 }

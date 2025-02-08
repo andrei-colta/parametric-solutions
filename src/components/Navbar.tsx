@@ -5,28 +5,28 @@ import { Theme } from "@/app/shared/theme";
 
 export default function Navbar() {
   return (
-    <nav className={`bg-[rgba(154,140,152,0.66)] text-[${Theme.LIGHT}] pr-6 flex justify-between items-center shadow-lg h-24`}>
+    <nav className={`hover:bg-[rgba(154,140,152,0.6)] bg-[rgba(154,140,152,0.1)] text-[${Theme.LIGHT}] pr-6 flex justify-between items-center shadow-lg xl:h-20 sm:h-16 ease-in-out duration-500`}>
       {/* Logo */}
       <div className="flex items-center h-full">
-        <Link href="/" className="h-full flex items-center space-x-8">
+        <Link href="/" className="h-full flex items-center xl:space-x-8 lg:space-x-4 truncate">
           <Image
             src="/parametric.jpg"
             alt="Parametric Solutions Logo"
-            width={100}
-            height={100}
+            width={50}
+            height={50}
             className="h-full w-auto object-contain"
           />
-          <span className="font-light font-advent text-5xl">Parametric Solutions</span>
+          <span className="font-light font-advent text-[clamp(2.5rem,2.5vw,3.25rem)]">Parametric Solutions</span>
         </Link>
       </div>
 
       {/* Navigation Links */}
-      <div className="hidden md:flex space-x-16 font-afacad mr-16">
+      <div className="hidden md:flex xl:space-x-16 md:space-x-10 font-afacad mr-16 truncate">
         {["Graphic Design", "3D Printing", "Woodworking", "Laser Engraving", "Contact"].map((item) => (
           <Link
             key={item}
             href={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
-            className="hover:text-white transition duration-200 text-2xl"
+            className="hover:text-white transition duration-200 text-[clamp(1rem,5vw,1.25rem)]"
           >
             {item}
           </Link>

@@ -35,3 +35,39 @@ body::before {
   background-color: rgba(34, 34, 59, 0.8); /* #22223B with 80% opacity */
   z-index: -1; /* Ensure it stays behind content */
 }
+
+@keyframes grow-box {
+  0% {
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: calc(100vw - 8rem);
+    height: calc(100vh - 10rem);
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-grow-box {
+  animation: grow-box 1.2s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-in 1.2s forwards; /* 1.2s delay */
+}
+
