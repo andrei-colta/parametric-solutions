@@ -21,8 +21,8 @@ export default function Navbar() {
       </div>
 
       {/* Navigation Links */}
-      <div className="hidden md:flex xl:space-x-16 md:space-x-10 font-afacad mr-16 truncate">
-        {["Graphic Design", "3D Printing", "Woodworking", "Laser Engraving", "Contact"].map((item) => (
+      <div className="hidden md:flex xl:space-x-16 md:space-x-12 font-afacad mr-16 truncate">
+        {["3D Printing", "Woodworking", "Laser Engraving", "Contact"].map((item) => (
           <Link
             key={item}
             href={`/${item.toLowerCase().replace(/\s+/g, "-")}`}

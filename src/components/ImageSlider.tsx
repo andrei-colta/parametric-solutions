@@ -3,7 +3,7 @@
 import { fetchFilesFromFolder, Image } from "@/service/file.service";
 import { useEffect, useState } from "react";
 
-export default function ImageSlider() {
+export default function ImageSlider({ paths }: { paths: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState<Image[]>([]);
   
@@ -18,10 +18,9 @@ export default function ImageSlider() {
 
   useEffect(() => {
       async function loadImages() {
-        const files = await fetchFilesFromFolder(`images/builds`); // Adjust to your Firebase folder
-        // const files2 = await fetchFilesFromFolder(`images/metal`); // Adjust to your Firebase folder
-        // const files3 = await fetchFilesFromFolder(`images/woodworking`); // Adjust to your Firebase folder
-        setImages([...files]);
+        const result = (await Promise.all(paths.map(path => fetchFilesFromFolder(path)))).flat();
+        console.log(result)
+        setImages(result);
       }
   
       loadImages();

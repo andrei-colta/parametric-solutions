@@ -40,16 +40,18 @@ body::before {
   0% {
     width: 0;
     height: 0;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    transform: scale(0);
     opacity: 0;
   }
-  50% {
+  40% {
     opacity: 1;
   }
   100% {
     width: calc(100vw - 8rem);
     height: calc(100vh - 10rem);
-    transform: translate(0, 0);
+    transform: scale(1);
     opacity: 1;
   }
 }
@@ -57,17 +59,21 @@ body::before {
 @keyframes fade-in {
   0% {
     opacity: 0;
+    transform: translateY(10px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* Apply this to the main container */
 .animate-grow-box {
-  animation: grow-box 1.2s ease-out forwards;
+  animation: grow-box 0.8s ease-out forwards;
 }
 
+/* Apply this to inner content */
 .animate-fade-in {
-  animation: fade-in 1s ease-in 1.2s forwards; /* 1.2s delay */
+  animation: fade-in 0.4s ease-in 0.6s forwards; /* Starts after the box grows */
 }
 

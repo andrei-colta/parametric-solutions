@@ -1,7 +1,18 @@
-export default function GraphicDesign() {
-  return (
-    <div className='flex items-center justify-center min-h-screen text-[#F2E9E4] min-h-[calc(100vh-6rem)]'>
-      <h1 className='text-4xl font-afacad'>Graphic design Page</h1>
-    </div>
-  );
-}
+'use client';
+import ImageSlider from "@/components/ImageSlider";
+import ResponsiveText from "@/components/ResponsiveText";
+import SelectionBox from "@/components/SelectionBox";
+
+// export default function MetalDesign() {
+//   return (
+//     <SelectionBox>
+//       <div className="flex lg:flex-row px-4 md:px-8 gap-8 md:gap-16 w-full h-full">
+//         <div className="w-full lg:w-1/2 flex">
+//           <ImageSlider path="images/metal"/>
+//         </div>
+
+//         <ResponsiveText />
+//       </div>
+//     </SelectionBox>
+//   );
+// }
