@@ -34,14 +34,16 @@ const paragraphs = {
   ],
 };
 
-const titles = {
+export type PageName = 'homepage' | '3d-printing' | 'woodworking' | 'laser';
+
+const titles: { [key in PageName]: string } = {
   homepage: "We will build anything",
   '3d-printing': "Precision & Expertise in 3D Printing",
   woodworking: 'Cutting, Shaping & Finishing',
   laser: 'Laser Engraving & Cutting'
 }
 
-export default function ResponsiveText({ page }: { page: keyof typeof paragraphs }) {
+export default function ResponsiveText({ pageName }: { pageName: PageName }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
 
@@ -50,7 +52,7 @@ export default function ResponsiveText({ page }: { page: keyof typeof paragraphs
       setIsFading(true); // Start fade out
 
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 2) % paragraphs[page].length);
+        setCurrentIndex((prevIndex) => (prevIndex + 2) % paragraphs[pageName].length);
         setIsFading(false); // Start fade in
       }, 800); // Transition duration
     }, 10000); // 10-second interval
@@ -58,17 +60,19 @@ export default function ResponsiveText({ page }: { page: keyof typeof paragraphs
     return () => clearInterval(interval);
   }, []);
 
+  const paragraphClasses = 'text-[clamp(0.5rem,2.25vw,2rem)] font-light text-left transition-opacity duration-[800ms] ease-in-out ';
+
   return (
-    <div className={`w-full lg:w-1/2 flex-1 flex flex-col font-afacad leading-normal relative h-[calc(100vh-14rem)] justify-between text-[${Theme.LIGHT}] pt-10`}>
-      <p className="text-[clamp(1.5rem,4vw,2.5rem)] text-left">
-        {titles[page]}
+    <div className={`w-full lg:w-1/2 flex-1 flex flex-col container font-afacad leading-normal relative gap-[clamp(0.75rem,4.5vh,5rem)] text-[${Theme.LIGHT}]`}>
+      <p className="text-[clamp(1.5rem,3vw,2.5rem)] text-left">
+        {titles[pageName]}
       </p>
 
-      <p className="text-[clamp(1.25rem,2.25vw,1.5rem)] text-left transition-opacity duration-[800ms] ease-in-out" style={{ opacity: isFading ? 0 : 1 }}>
-        {paragraphs[page][currentIndex]}
+      <p className={paragraphClasses} style={{ opacity: isFading ? 0 : 1 }}>
+        {paragraphs[pageName][currentIndex]}
       </p>
-      <p className="text-[clamp(1.25rem,2.25vw,1.5rem)] text-left transition-opacity duration-[800ms] ease-in-out" style={{ opacity: isFading ? 0 : 1 }}>
-        {paragraphs[page][(currentIndex + 1) % paragraphs[page].length]}
+      <p className={paragraphClasses} style={{ opacity: isFading ? 0 : 1 }}>
+        {paragraphs[pageName][(currentIndex + 1) % paragraphs[pageName].length]}
       </p>
     </div>
   );

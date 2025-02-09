@@ -5,10 +5,10 @@ import { Theme } from "@/app/shared/theme";
 
 export default function Navbar() {
   return (
-    <nav className={`hover:bg-[rgba(154,140,152,0.6)] bg-[rgba(154,140,152,0.1)] text-[${Theme.LIGHT}] pr-6 flex justify-between items-center shadow-lg xl:h-20 sm:h-16 ease-in-out duration-500`}>
+    <nav className={`hover:bg-[rgba(154,140,152,0.6)] bg-[rgba(154,140,152,0.1)] text-[${Theme.LIGHT}] pr-6 flex justify-between items-center shadow-lg xl:h-20 h-16 ease-in-out duration-500`}>
       {/* Logo */}
       <div className="flex items-center h-full">
-        <Link href="/" className="h-full flex items-center xl:space-x-8 lg:space-x-4 truncate">
+        <Link href="/" className="h-full flex items-center xl:space-x-8 space-x-4 truncate">
           <Image
             src="/parametric.jpg"
             alt="Parametric Solutions Logo"
@@ -16,7 +16,7 @@ export default function Navbar() {
             height={50}
             className="h-full w-auto object-contain"
           />
-          <span className="font-light font-advent text-[clamp(2.5rem,2.5vw,3.25rem)]">Parametric Solutions</span>
+          <span className="font-light font-advent text-[clamp(2rem,2.5vw,3.25rem)]">Parametric Solutions</span>
         </Link>
       </div>
 
@@ -26,7 +26,7 @@ export default function Navbar() {
           <Link
             key={item}
             href={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
-            className="hover:text-white transition duration-200 text-[clamp(1rem,5vw,1.25rem)]"
+            className="hover:text-white transition duration-200 text-[clamp(1rem,4vw,1.5rem)]"
           >
             {item}
           </Link>
