@@ -28,9 +28,9 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
   }, [images]);
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+    const timeout = setTimeout(nextSlide, 5000);
+    return () => clearTimeout(timeout);
+  }, [currentIndex, images]);
 
   const navButtonClasses = 'absolute bg-gray-800 bg-opacity-30 text-white p-2 rounded-full z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
 
