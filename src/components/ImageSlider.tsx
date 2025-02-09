@@ -1,20 +1,12 @@
 'use client';
 
 import { fetchFilesFromFolder, Image } from "@/service/file.service";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 export default function ImageSlider({ paths }: { paths: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState<Image[]>([]);
-
-  function prevSlide() {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-  };
-
-  function nextSlide() {
-    setCurrentIndex((prevIndex) => (prevIndex >= images.length - 1 ? 0 : prevIndex + 1));
-  };
 
   useEffect(() => {
     async function loadImages() {
@@ -24,7 +16,6 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
 
     loadImages();
   }, []);
-
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -43,10 +34,45 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
 
   const navButtonClasses = 'absolute bg-gray-800 bg-opacity-30 text-white p-2 rounded-full z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
 
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  // Handle touch start
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX = e.touches[0].clientX;
+  };
+
+  // Handle touch move (optional, for better detection)
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX = e.touches[0].clientX;
+  };
+
+  // Handle touch end (determine swipe direction)
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50; // Minimum distance for a valid swipe
+
+    if (touchStartX - touchEndX > swipeThreshold) {
+      nextSlide(); // Swiped left
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+      prevSlide(); // Swiped right
+    }
+  };
+
+  function prevSlide() {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  };
+
+  function nextSlide() {
+    setCurrentIndex((prevIndex) => (prevIndex >= images.length - 1 ? 0 : prevIndex + 1));
+  };
+
   return (
     <div className="w-full h-full lg:w-1/2 relative flex flex-1 justify-center items-center group">
       {/* Image Container */}
-      <div className={`relative h-full w-full flex items-center justify-center overflow-hidden bg-[rgba(201,173,167,0.1)] shadow`}>
+      <div className={`relative h-full w-full flex items-center justify-center overflow-hidden bg-[rgba(201,173,167,0.1)] shadow`}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}>
         {images.map((image, index) => (
           <img
             key={index}
@@ -72,7 +98,7 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
       </div>
 
       {/* Indicators */}
-      <div className="absolute top-full mt-[-1rem] lg:mt-[-2rem] left-1/2 transform -translate-x-1/2 w-full max-w-[80%] lg:max-w-[50%] overflow-hidden flex justify-center">
+      <div className="absolute top-full opacity-0 lg:opacity-100 lg:mt-[-2rem] left-1/2 transform -translate-x-1/2 w-full max-w-[80%] lg:max-w-[50%] overflow-hidden flex justify-center">
         <div className="flex space-x-1 lg:space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 overflow-x-auto scrollbar-hide">
           {images.map((_, index) => (
             <button
