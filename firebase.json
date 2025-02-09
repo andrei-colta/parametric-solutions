@@ -7,6 +7,7 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+      { "source": "/contact", "destination": "/contact.html" },
       { "source": "/3d-printing", "destination": "/3d-printing.html" },
       { "source": "/3d-printing/**", "destination": "/3d-printing.html" }
     ]

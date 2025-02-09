@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Theme } from "@/app/shared/theme";
 import { Menu } from "@mui/icons-material";
 
 export default function Navbar() {
@@ -36,7 +35,7 @@ export default function Navbar() {
   const navLinks = ["3D Printing", "Woodworking", "Laser Engraving", "Contact"];
 
   return (
-    <nav className={`hover:bg-[rgba(154,140,152,0.6)] bg-[rgba(154,140,152,0.1)] text-[${Theme.LIGHT}] pr-6 flex justify-between items-center shadow-lg xl:h-20 h-16 ease-in-out duration-500`}>
+    <nav className={`hover:bg-[rgba(154,140,152,0.6)] bg-[rgba(154,140,152,0.1)] text-light pr-6 flex justify-between items-center shadow-lg xl:h-20 h-16 ease-in-out duration-500`}>
 
       {/* Logo */}
       <div className="flex items-center h-full">
