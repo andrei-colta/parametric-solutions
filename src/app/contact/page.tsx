@@ -6,7 +6,7 @@ export default function Contact() {
   const rowClasses = 'flex items-center space-x-4';
 
   return (
-    <div className="flex flex-col w-screen items-center justify-center p-8 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] opacity-0 translate-y-4 animate-fade-in before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:opacity-[75%] bg-cover bg-center bg-no-repeat bg-[url('https://firebasestorage.googleapis.com/v0/b/parametric-solutions.firebasestorage.app/o/images%2Fwoodworking%2Fcover-photo.jpg?alt=media&token=c2bdff4a-c05f-470f-8940-d0eeaec5a9a2')]">
+    <div className="flex flex-col max-w-[100vw] items-center justify-center p-8 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] opacity-0 translate-y-4 animate-fade-in before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:opacity-[75%] bg-cover bg-center bg-no-repeat bg-[url('https://firebasestorage.googleapis.com/v0/b/parametric-solutions.firebasestorage.app/o/images%2Fwoodworking%2Fcover-photo.jpg?alt=media&token=c2bdff4a-c05f-470f-8940-d0eeaec5a9a2')]">
       <div className="relative z-10">
         {/* Slogan */}
         <h1 className={`text-2xl md:text-4xl font-bold text-light mb-8 text-center font-afacad`}>

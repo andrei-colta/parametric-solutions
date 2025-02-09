@@ -8,6 +8,7 @@
     ],
     "rewrites": [
       { "source": "/contact", "destination": "/contact.html" },
+      { "source": "/laser-engraving", "destination": "/laser-engraving.html" },
       { "source": "/3d-printing", "destination": "/3d-printing.html" },
       { "source": "/3d-printing/**", "destination": "/3d-printing.html" }
     ]
