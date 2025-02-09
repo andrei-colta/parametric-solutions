@@ -30,8 +30,6 @@ export async function fetchFilesFromFolder(folderPath: string) {
       })
     );
 
-    console.log(files)
-
     return files;
   } catch (error) {
     console.error("Error fetching files:", error);

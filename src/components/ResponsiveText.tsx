@@ -60,10 +60,10 @@ export default function ResponsiveText({ pageName }: { pageName: PageName }) {
     return () => clearInterval(interval);
   }, []);
 
-  const paragraphClasses = 'text-[clamp(0.5rem,2.25vw,2rem)] font-light text-left transition-opacity duration-[800ms] ease-in-out ';
+  const paragraphClasses = 'text-[clamp(0.75rem,2vw,2rem)] font-light text-left transition-opacity duration-[800ms] ease-in-out ';
 
   return (
-    <div className={`w-full lg:w-1/2 flex-1 flex flex-col container font-afacad leading-normal relative gap-[clamp(0.75rem,4.5vh,5rem)] text-[${Theme.LIGHT}]`}>
+    <div className={`w-full lg:w-1/2 flex-1 flex flex-col container font-afacad px-4 leading-normal relative gap-[clamp(0.75rem,4.5vh,5rem)] text-[${Theme.LIGHT}]`}>
       <p className="text-[clamp(1.5rem,3vw,2.5rem)] text-left">
         {titles[pageName]}
       </p>

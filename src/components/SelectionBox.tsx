@@ -3,8 +3,7 @@ export default function SelectionBox({ children }: { children: React.ReactNode }
     <div className="flex w-screen p-6 md:p-8">
       {/* Animated Selection Box */}
       <div
-        className="border-4 flex-1 border-dashed border-[#D9D9D9] bg-[rgba(217,217,217,0.07)]
-          h-[calc(100vh-14rem)] opacity-0 animate-grow-box"
+        className="border-4 flex-1 border-dashed border-[#D9D9D9] bg-[rgba(217,217,217,0.07)] opacity-0 animate-grow-box"
       >
         {/* Content Wrapper - Delayed Fade In */}
         <div className="opacity-0 animate-fade-in delay-[1.2s] h-full">

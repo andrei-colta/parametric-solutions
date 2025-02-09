@@ -5,7 +5,7 @@ import SelectionBox from "./SelectionBox";
 export function Page({ paths, pageName }: { paths: string[], pageName: PageName }) {
   return (
     <SelectionBox>
-      <div className="flex lg:flex-row pr-4 md:pr-8 gap-8 md:gap-16 w-full h-full items-center">
+      <div className="flex flex-col lg:flex-row lg:pr-8 gap-8 md:gap-16 w-full h-full items-center">
         <ImageSlider paths={paths} />
 
         <ResponsiveText pageName={pageName} />
