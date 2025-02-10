@@ -7,6 +7,10 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material";
 export default function ImageSlider({ paths }: { paths: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState<Image[]>([]);
+  const [isHovered, setIsHovered] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const slideDuration = 5000;
 
   useEffect(() => {
     async function loadImages() {
@@ -28,11 +32,21 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
   }, [images]);
 
   useEffect(() => {
-    const timeout = setTimeout(nextSlide, 5000);
-    return () => clearTimeout(timeout);
-  }, [currentIndex, images]);
+    if (isHovered) return;
 
-  const navButtonClasses = 'absolute bg-gray-800 bg-opacity-30 text-white p-2 rounded-full z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
+    const interval = setInterval(() => {
+      setProgress((prev) => Math.min(prev + 100 / (slideDuration / 50), 100));
+    }, 50);
+
+    const timeout = setTimeout(nextSlide, slideDuration);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [currentIndex, images, isHovered]);
+
+  const navButtonClasses = 'absolute bg-gray-800 bg-opacity-50 text-white p-2 rounded-full z-20';// opacity-0 group-hover:opacity-100 transition-opacity duration-300';
 
   let touchStartX = 0;
   let touchEndX = 0;
@@ -40,6 +54,8 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
   // Handle touch start
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX = e.touches[0].clientX;
+    setIsHovered(true);
+    setProgress(0); // Reset progress bar
   };
 
   // Handle touch move (optional, for better detection)
@@ -49,6 +65,7 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
 
   // Handle touch end (determine swipe direction)
   const handleTouchEnd = () => {
+    setIsHovered(false);
     const swipeThreshold = 50; // Minimum distance for a valid swipe
 
     if (touchStartX - touchEndX > swipeThreshold) {
@@ -64,6 +81,7 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
 
   function nextSlide() {
     setCurrentIndex((prevIndex) => (prevIndex >= images.length - 1 ? 0 : prevIndex + 1));
+    setProgress(0); // Reset progress bar
   };
 
   return (
@@ -72,7 +90,9 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
       <div className={`relative h-full w-full flex items-center justify-center overflow-hidden bg-[rgba(201,173,167,0.1)] shadow`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}>
+        onTouchEnd={handleTouchEnd}
+        onMouseEnter={() => {setIsHovered(true); setProgress(0);}}
+        onMouseLeave={() => setIsHovered(false)}>
         {images.map((image, index) => (
           <img
             key={index}
@@ -95,6 +115,14 @@ export default function ImageSlider({ paths }: { paths: string[] }) {
         >
           <ArrowForward />
         </button>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="absolute bottom-[-2px] lg:bottom-0 left-0 w-full h-[1px] lg:h-[2px] bg-gray-300">
+        <div
+          className="h-full bg-secondaryDark transition-all duration-50"
+          style={{ width: `${progress}%` }}
+        ></div>
       </div>
 
       {/* Indicators */}
